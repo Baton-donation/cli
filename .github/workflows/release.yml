@@ -26,6 +26,9 @@ jobs:
 
       - name: Install dependencies
         run: yarn install
+
+      - name: Build .env
+        run: echo BASE_URL=${{ secrets.BASE_URL }} > .env
      
       - name: Package
         run: yarn build:binaries

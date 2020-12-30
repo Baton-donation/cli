@@ -39,6 +39,9 @@
   },
   "oclif": {
     "commands": "./lib/commands",
+    "hooks": {
+      "init": "./lib/hooks/init"
+    },
     "bin": "baton",
     "plugins": [
       "@oclif/plugin-help"
@@ -62,6 +65,7 @@
     "@oclif/command": "^1.8.0",
     "@oclif/config": "^1.17.0",
     "@oclif/plugin-help": "^3.2.1",
+    "dotenv": "^8.2.0",
     "got": "^11.8.1",
     "ora": "^5.2.0",
     "uuid": "^8.3.2"

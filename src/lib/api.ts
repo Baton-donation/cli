@@ -4,7 +4,7 @@ export default class APIClient {
   private client: Got;
 
   constructor() {
-    this.client = got.extend({prefixUrl: 'http://3.23.85.222'})
+    this.client = got.extend({prefixUrl: process.env.BASE_URL})
   }
 
   async getPublicKey() {
