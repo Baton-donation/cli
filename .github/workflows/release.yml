@@ -27,6 +27,7 @@ jobs:
       - name: Install dependencies
         run: yarn install
 
+        # Need to create a .env instead of just exposing process.env because pkg won't inline env vars
       - name: Build .env
         run: echo BASE_URL=${{ secrets.BASE_URL }} > .env
      

@@ -37,7 +37,8 @@
     ]
   },
   "pkg": {
-    "scripts": "./lib/**/*.js"
+    "scripts": "./lib/**/*.js",
+    "assets": ".env"
   },
   "oclif": {
     "commands": "./lib/commands",
