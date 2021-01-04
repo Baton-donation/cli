@@ -17,6 +17,8 @@
   },
   "devDependencies": {
     "@oclif/dev-cli": "^1.26.0",
+    "@types/libsodium-wrappers": "^0.7.8",
+    "@types/ndjson": "^2.0.0",
     "@types/uuid": "^8.3.0",
     "husky": "^4.3.6",
     "lint-staged": "^10.5.3",
@@ -67,6 +69,8 @@
     "@oclif/plugin-help": "^3.2.1",
     "dotenv": "^8.2.0",
     "got": "^11.8.1",
+    "libsodium-wrappers": "^0.7.8",
+    "ndjson": "^2.0.0",
     "ora": "^5.2.0",
     "uuid": "^8.3.2"
   }

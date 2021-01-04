@@ -1,10 +1,7 @@
-import * as crypto from 'crypto';
-import * as util from 'util';
 import * as path from 'path';
 import * as fs from 'fs';
 import {Command, flags} from '@oclif/command';
-
-const generateKeyPair = util.promisify(crypto.generateKeyPair);
+import * as sodium from 'libsodium-wrappers';
 
 export default class KeysGenerate extends Command {
 	static description = 'generates a new public/private keypair';
@@ -17,24 +14,19 @@ export default class KeysGenerate extends Command {
 	async run() {
 		const {flags} = this.parse(KeysGenerate);
 
-		const {publicKey, privateKey} = await generateKeyPair('rsa', {
-			modulusLength: 2048,
-			publicKeyEncoding: {
-				type: 'pkcs1',
-				format: 'pem'
-			},
-			privateKeyEncoding: {
-				type: 'pkcs1',
-				format: 'pem'
-			}
-		});
+		await sodium.ready;
 
-		const publicKeyPath = path.join(flags.outDir, `${flags.name}.pub`);
-		const privateKeyPath = path.join(flags.outDir, `${flags.name}.pem`);
+		const keys = sodium.crypto_box_keypair();
+
+		const publicKeyString = Buffer.from(keys.publicKey).toString('base64');
+		const privateKeyString = Buffer.from(keys.privateKey).toString('base64');
+
+		const publicKeyPath = path.join(flags.outDir, `${flags.name}.public`);
+		const privateKeyPath = path.join(flags.outDir, `${flags.name}.private`);
 
 		await Promise.all([
-			fs.promises.writeFile(publicKeyPath, publicKey),
-			fs.promises.writeFile(privateKeyPath, privateKey)
+			fs.promises.writeFile(publicKeyPath, publicKeyString),
+			fs.promises.writeFile(privateKeyPath, privateKeyString)
 		]);
 
 		this.log(`Keypair generated and saved in ${flags.outDir}.`);
