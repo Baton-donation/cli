@@ -33,4 +33,8 @@ export default class APIClient {
 
     return progress;
   }
+
+  async getAllUserDetails(): Promise<unknown[]> {
+    return this.client.get(`user-details`).json();
+  }
 }
