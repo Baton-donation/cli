@@ -4,7 +4,9 @@ export default class APIClient {
   private client: Got;
 
   constructor() {
-    this.client = got.extend({prefixUrl: process.env.BASE_URL})
+    this.client = got.extend({
+      prefixUrl: process.env.BASE_URL
+    })
   }
 
   async getPublicKey() {
@@ -36,5 +38,9 @@ export default class APIClient {
 
   async getAllUserDetails(): Promise<unknown[]> {
     return this.client.get(`user-details`).json();
+  }
+
+  async createUnlockCode(authToken: string): Promise<{code: string}> {
+    return this.client.post('codes', {headers: {authorization: `Bearer ${authToken}`}}).json();
   }
 }
