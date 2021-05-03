@@ -4,7 +4,9 @@ A CLI for Baton's backend.
 
 ## Usage
 
-[Download a recent release](https://github.com/Baton-donation/cli/releases).
+[Download a recent release](https://github.com/Baton-donation/cli/releases). You'll probably have to execute `chmod +x cli-{platform}` on the binary before you can execute it.
+
+On macOS, you'll have to "trust" it as well by right-clicking on it in Finder and clicking "Open." You can then go back to the terminal of your choice and use it as usual.
 
 ## Development
 
